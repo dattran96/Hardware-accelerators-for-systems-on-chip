@@ -1,0 +1,147 @@
+=== Generated schedule for mkTestbench ===
+
+Rule schedule
+-------------
+Rule: start_reg__dreg_update
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: state_handle_abort
+Predicate: abort.whas && abort.wget &&
+	   ((! start_wire.whas) || (! start_wire.wget))
+Blocking rules: (none)
+ 
+Rule: state_fired__dreg_update
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: state_every
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: restart
+Predicate: start_reg_1 && (! state_fired) &&
+	   ((! abort.whas) || (! abort.wget))
+Blocking rules: (none)
+ 
+Rule: action_f_init_l31c17
+Predicate: ((! abort.whas) || (! abort.wget) ||
+	    (start_wire.whas && start_wire.wget)) &&
+	   ((start_wire.whas && start_wire.wget &&
+	     ((abort.whas && abort.wget) ||
+	      (state_mkFSMstate.read == 3'd0))) ||
+	    ((! (testCounter < 32'd7)) &&
+	     start_wire.whas && start_wire.wget &&
+	     ((! abort.whas) || (! abort.wget)) &&
+	     (state_mkFSMstate.read == 3'd1)) ||
+	    ((! (testCounter < 32'd7)) &&
+	     start_wire.whas && start_wire.wget &&
+	     ((! abort.whas) || (! abort.wget)) &&
+	     (state_mkFSMstate.read == 3'd4)))
+Blocking rules: (none)
+ 
+Rule: action_l35c28
+Predicate: case testCounter of
+	   32'd0 -> testVec_0.RDY_go
+	   32'd1 -> testVec_1.RDY_go
+	   32'd2 -> testVec_2.RDY_go
+	   32'd3 -> testVec_3.RDY_go
+	   32'd4 -> testVec_4.RDY_go
+	   32'd5 -> testVec_5.RDY_go
+	   32'd6 -> testVec_6.RDY_go
+	   _ -> 1'd1 &&
+	   (testCounter < 32'd7) &&
+	   ((! abort.whas) || (! abort.wget)) &&
+	   ((state_mkFSMstate.read == 3'd1) ||
+	    (state_mkFSMstate.read == 3'd4))
+Blocking rules: (none)
+ 
+Rule: action_l36c26
+Predicate: (PrimArrayDynSelect (PrimBuildArray testVec_0.done
+					       testVec_1.done
+					       testVec_2.done
+					       testVec_3.done
+					       testVec_4.done
+					       testVec_5.done
+					       testVec_6.done)
+			       testCounter) &&
+	   ((! abort.whas) || (! abort.wget)) &&
+	   (state_mkFSMstate.read == 3'd2)
+Blocking rules: (none)
+ 
+Rule: action_f_update_l31c17
+Predicate: ((! abort.whas) || (! abort.wget)) &&
+	   (state_mkFSMstate.read == 3'd3)
+Blocking rules: (none)
+ 
+Rule: idle_l31c17
+Predicate: (! (testCounter < 32'd7)) &&
+	   ((! start_wire.whas) || (! start_wire.wget)) &&
+	   ((! abort.whas) || (! abort.wget)) &&
+	   (state_mkFSMstate.read == 3'd1)
+Blocking rules: (none)
+ 
+Rule: idle_l31c17_1
+Predicate: (! (testCounter < 32'd7)) &&
+	   ((! start_wire.whas) || (! start_wire.wget)) &&
+	   ((! abort.whas) || (! abort.wget)) &&
+	   (state_mkFSMstate.read == 3'd4)
+Blocking rules: (none)
+ 
+Rule: fsm_start
+Predicate: ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0) ||
+	    ((! (testCounter < 32'd7)) && (state_mkFSMstate.read == 3'd1)) ||
+	    ((! (testCounter < 32'd7)) && (state_mkFSMstate.read == 3'd4))) &&
+	   ((! start_reg_1) || state_fired) &&
+	   start_reg
+Blocking rules: (none)
+ 
+Rule: auto_start
+Predicate: ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0) ||
+	    ((! (testCounter < 32'd7)) && (state_mkFSMstate.read == 3'd1)) ||
+	    ((! (testCounter < 32'd7)) && (state_mkFSMstate.read == 3'd4))) &&
+	   ((! start_reg_1) || state_fired) &&
+	   (! start_reg) &&
+	   (! running)
+Blocking rules: (none)
+ 
+Rule: auto_finish
+Predicate: running &&
+	   ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0) ||
+	    ((! (testCounter < 32'd7)) && (state_mkFSMstate.read == 3'd1)) ||
+	    ((! (testCounter < 32'd7)) && (state_mkFSMstate.read == 3'd4))) &&
+	   ((! start_reg_1) || state_fired) &&
+	   (! start_reg)
+Blocking rules: (none)
+ 
+Rule: __me_check_5
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_6
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_7
+Predicate: True
+Blocking rules: (none)
+ 
+Logical execution order: restart,
+			 action_l35c28,
+			 action_l36c26,
+			 action_f_update_l31c17,
+			 __me_check_6,
+			 __me_check_7,
+			 fsm_start,
+			 idle_l31c17,
+			 idle_l31c17_1,
+			 auto_start,
+			 auto_finish,
+			 action_f_init_l31c17,
+			 __me_check_5,
+			 start_reg__dreg_update,
+			 state_handle_abort,
+			 state_every,
+			 state_fired__dreg_update
+
+===========================================

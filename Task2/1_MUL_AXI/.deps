@@ -1,0 +1,5 @@
+build/Mul_AXI.bo: /home/stud/nt92homu/Desktop/task2_final/src/Mul_AXI.bsv 
+build/Testbench.bo: /home/stud/nt92homu/Desktop/task2_final/src/Testbench.bsv build/TestsMainTest.bo build/TestHelper.bo build/Mul_AXI.bo
+build/TestHelper.bo: /home/stud/nt92homu/Desktop/task2_final/src/TestHelper.bsv 
+build/TestsMainTest.bo: /home/stud/nt92homu/Desktop/task2_final/src/TestsMainTest.bsv build/TestHelper.bo build/Mul_AXI.bo
+OBJS=build/Mul_AXI.bo build/TestHelper.bo build/TestsMainTest.bo build/Testbench.bo
