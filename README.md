@@ -14,3 +14,7 @@ Task 2 has 4 folder:
     3_mmap: Test the AXI Multiplier by writing 2 sample values to first and second register and getting back value from the third register
     
     4_debug: debug server to transfer data from board to PC in ESA LAB
+
+Task 3 and 4: Still working on
+
+    Accelerator for a Sobel Filter in image processing area.
